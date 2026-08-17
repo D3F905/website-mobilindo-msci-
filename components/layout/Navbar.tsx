@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { getGeneralInquiryLink } from "@/lib/whatsapp";
@@ -38,10 +39,18 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-5">
           <a
             href="#"
-            className="font-heading text-lg font-bold uppercase tracking-tight text-white"
+            className="relative block h-11 w-11 shrink-0 sm:h-12 sm:w-12"
+            aria-label="MSCI Mobilindo"
             onClick={() => setIsMenuOpen(false)}
           >
-            MSCI Mobilindo
+            <Image
+              src="/images/Logo/msci-logo.png"
+              alt="MSCI Mobilindo"
+              fill
+              sizes="48px"
+              priority
+              className="object-contain"
+            />
           </a>
 
           <nav aria-label="Navigasi utama" className="hidden md:flex md:items-center md:gap-8">

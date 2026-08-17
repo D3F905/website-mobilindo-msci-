@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { getGeneralInquiryLink } from "@/lib/whatsapp";
@@ -14,12 +15,24 @@ export default function Footer() {
   const whatsappLink = getGeneralInquiryLink();
 
   return (
-    <footer className="bg-ink-950 text-white">
-      <Container className="py-16 sm:py-24">
-        <p className="font-heading text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
-          MSCI Mobilindo
-        </p>
-        <p className="mt-3 text-sm font-semibold uppercase tracking-[0.25em] text-accent-400">
+    <footer className="relative overflow-hidden bg-ink-950 text-white">
+      <div
+        className="pointer-events-none absolute -bottom-24 -right-24 h-[420px] w-[420px] opacity-[0.04] sm:h-[520px] sm:w-[520px]"
+        aria-hidden="true"
+      >
+        <Image src="/images/Logo/msci-logo.png" alt="" fill className="object-contain" />
+      </div>
+      <Container className="relative py-16 sm:py-24">
+        <div className="relative h-20 w-20 sm:h-24 sm:w-24">
+          <Image
+            src="/images/Logo/msci-logo.png"
+            alt="MSCI Mobilindo"
+            fill
+            sizes="96px"
+            className="object-contain"
+          />
+        </div>
+        <p className="mt-5 text-sm font-semibold uppercase tracking-[0.25em] text-accent-400">
           Trusted Car Rent
         </p>
 

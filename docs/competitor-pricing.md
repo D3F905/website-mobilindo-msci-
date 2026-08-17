@@ -6,6 +6,29 @@ via public Google search results and competitor websites, checked
 2026-08-13. Rental pricing changes frequently — this should be re-verified
 periodically rather than treated as permanently accurate.
 
+## 2026-08-15 owner correction — figures currently shown on the site
+
+The owner corrected two things directly: (1) MSCI's own Veloz price is
+**400K, not 300K** — the `lib/data/fleet.ts` "veloz" (plain) listing had a
+stale 300K left over from an earlier pass; `veloz-matic` and
+`veloz-manual` were already 400K. (2) updated competitor figures for
+Pajero Sport, Veloz and Avanza, provided directly by the owner rather than
+from a fresh round of web research:
+
+| Vehicle | MSCI | Kompetitor A | Kompetitor B | Kompetitor C | Kompetitor D |
+|---|---|---|---|---|---|
+| Pajero Sport | 850K | 1.100K | 1.200K | 1.250K | 1.300K |
+| Veloz | 400K | 400K | 450K | 500K | 550K |
+| Avanza | 300K | 325K | 350K | 375K | 400K |
+
+**Provenance note**: these competitor figures came directly from the
+owner, not from re-running the Google searches below — they supersede the
+web-research figures for what's displayed in `PriceComparison.tsx`, but
+the original research tables are kept below for historical context. Since
+Veloz MSCI (400K) exactly ties Kompetitor A, the site must not claim
+"termurah" (cheapest) or "nomor 1" for Veloz — the honest framing already
+in use ("salah satu harga paling kompetitif") still holds.
+
 **Methodology**: searched Google for `sewa [vehicle] Bandung lepas kunci
 harga per hari` per vehicle class, then cross-checked the resulting
 competitor sites/listings. "Lepas kunci" = self-drive (no driver), which is
@@ -29,10 +52,11 @@ Transport) and beats every other self-drive listing (1.1jt–1.3jt).
 
 ## Alphard (MSCI: 700K) — ⚠️ not confidently comparable
 
-MSCI's Alphard listing has no confirmed year/trim (still no photo as of
-this research — see `public/images/fleet/README.md`). Every competitor
-listing found specifies a generation/trim ("Transformer", "Hybrid", "Gen
-3", "Gen 4"), and prices vary enormously by trim:
+MSCI's Alphard listing now has a real unit photo (added 2026-08-16, see
+`public/images/fleet/README.md`), but its year/trim generation still
+isn't confirmed from that alone. Every competitor listing found specifies
+a generation/trim ("Transformer", "Hybrid", "Gen 3", "Gen 4"), and prices
+vary enormously by trim:
 
 | Competitor | Source | Price | Driver | Date checked | Notes |
 |---|---|---|---|---|---|
@@ -46,7 +70,7 @@ listing found specifies a generation/trim ("Transformer", "Hybrid", "Gen
 MSCI's 700K and every competitor (1.5jt–4.2jt) is too large to be a fair
 same-trim comparison — it almost certainly means MSCI's unit is an older/
 base generation, not that MSCI is 2–5× cheaper for the same car. Revisit
-once the Alphard unit is photographed and its year/trim is confirmed.
+once the Alphard unit's exact year/trim generation is confirmed.
 
 ## Avanza (MSCI: 300K–350K depending on variant)
 
@@ -61,7 +85,7 @@ once the Alphard unit is photographed and its year/trim is confirmed.
 **Summary**: excluding the promo teaser, MSCI (300K–350K) sits at the
 low-to-mid end of the 325K–400K range.
 
-## Veloz (MSCI: 300K–400K depending on variant)
+## Veloz (MSCI: 400K — corrected 2026-08-15, was previously listed as 300K–400K)
 
 | Competitor | Source | Price | Duration | Date checked | Notes |
 |---|---|---|---|---|---|
@@ -70,8 +94,9 @@ low-to-mid end of the 325K–400K range.
 | PT Global Transport | globaltransport.co.id | Mulai Rp250.000 | — | 2026-08-13 | **PROMO** — same bundled teaser as above |
 | Carmudi Indonesia *(media article, not a rental company)* | carmudi.co.id | Rp350.000 / Rp400.000 | 12 jam / 24 jam | 2026-08-13 | "4 Tempat Sewa Mobil Matic Murah di Bandung 2024" — used as market context only, not counted toward the competitor total |
 
-**Summary**: excluding the promo teaser, MSCI (300K–400K) matches or beats
-every self-drive Veloz price found (400K–550K).
+**Summary**: excluding the promo teaser, MSCI (400K) ties the lowest
+self-drive Veloz price found and beats the rest (400K–550K). See the
+2026-08-15 owner correction above for the figures actually shown on site.
 
 ## Ertiga / Honda BR-V (MSCI: Ertiga 300K, BR-V 350K)
 

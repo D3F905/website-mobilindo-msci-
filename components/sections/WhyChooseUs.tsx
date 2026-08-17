@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 
@@ -29,12 +30,27 @@ const FEATURES: Feature[] = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-ink-950 py-20 text-white sm:py-28">
-      <Container>
+    <section className="relative overflow-hidden bg-ink-950 py-20 text-white sm:py-28">
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] opacity-[0.07] lg:block"
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/fleet/terios.jpg"
+          alt=""
+          fill
+          className="object-cover object-right [mask-image:linear-gradient(to_right,black,transparent)]"
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-l from-ink-950 via-ink-950/85 to-ink-950/40"
+        aria-hidden="true"
+      />
+      <Container className="relative">
         <Reveal>
           <div className="flex items-center gap-3">
             <span className="text-xs font-semibold text-accent-400/60" aria-hidden="true">
-              N.03
+              N.04
             </span>
             <span className="h-px w-8 bg-white/20" aria-hidden="true" />
           </div>

@@ -1,16 +1,15 @@
 import { getGeneralInquiryLink } from "@/lib/whatsapp";
-import { getGoogleMapsShortLink } from "@/lib/maps";
+import { getGoogleMapsLink } from "@/lib/maps";
 
 /**
  * Persistent bottom-right stack: Maps above WhatsApp. Both are `<a>`
  * elements (no client JS needed) reusing the site's existing link
- * helpers — no new WhatsApp URL, and the Maps button uses the exact
- * maps.app.goo.gl link supplied for it, kept separate from the
- * text-search link used elsewhere in ContactSection.
+ * helpers — no new WhatsApp URL, and the Maps button uses the same
+ * share.google link used everywhere else Maps is linked on the site.
  */
 export default function FloatingActions() {
   const whatsappLink = getGeneralInquiryLink();
-  const mapsLink = getGoogleMapsShortLink();
+  const mapsLink = getGoogleMapsLink();
 
   return (
     <div className="fixed bottom-4 right-4 z-[60] flex flex-col items-end gap-2.5 sm:bottom-6 sm:right-6 sm:gap-3">

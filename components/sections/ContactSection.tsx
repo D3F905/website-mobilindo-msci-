@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import { getGeneralInquiryLink } from "@/lib/whatsapp";
-import { getGoogleMapsEmbedUrl, getGoogleMapsLink } from "@/lib/maps";
+import { getGoogleMapsLink } from "@/lib/maps";
 
 interface ContactRow {
   label: string;
@@ -76,8 +77,28 @@ export default function ContactSection() {
         </Reveal>
 
         <Reveal className="mt-20 sm:mt-28">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 border-t border-white/10 pt-12 lg:grid-cols-2 lg:gap-16">
-            <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 lg:grid-cols-1 lg:gap-8">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 border-t border-white/10 pt-12 lg:grid-cols-2 lg:items-stretch lg:gap-16">
+            <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10 sm:aspect-video lg:aspect-auto lg:min-h-[420px]">
+              <Image
+                src="/images/photo lokasi/lokasi-msci.jpg"
+                alt="Lokasi MSCI Mobilindo di Komplek Bojong Malaka Indah, Baleendah, Bandung"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="absolute bottom-5 left-5 flex items-center gap-2.5">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" aria-hidden="true" />
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+                  Baleendah, Bandung
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 lg:grid-cols-1 lg:content-center lg:gap-8">
               {rows.map((row) => {
                 const isExternal = /^https?:\/\//.test(row.href);
                 return (
@@ -91,6 +112,7 @@ export default function ContactSection() {
                       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="group mt-4 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wide text-accent-400 transition-colors hover:text-white"
                     >
+                      {row.label === "Lokasi" && <MapPinIcon />}
                       {row.ctaLabel}
                       <ArrowIcon />
                     </a>
@@ -98,27 +120,24 @@ export default function ContactSection() {
                 );
               })}
             </div>
-
-            <div>
-              <div className="relative aspect-video w-full overflow-hidden rounded-md border border-white/15 bg-ink-900">
-                <iframe
-                  src={getGoogleMapsEmbedUrl()}
-                  title="Lokasi MSCI Mobilindo di Google Maps"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full"
-                  style={{ border: 0 }}
-                />
-              </div>
-              <p className="mt-3 text-xs text-white/50">
-                Peta berdasarkan pencarian alamat — gunakan tombol &ldquo;Buka Google Maps&rdquo; di
-                atas untuk navigasi.
-              </p>
-            </div>
           </div>
         </Reveal>
       </Container>
     </section>
+  );
+}
+
+function MapPinIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 22s7-7.58 7-12.5A7 7 0 0 0 5 9.5C5 14.42 12 22 12 22Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
   );
 }
 

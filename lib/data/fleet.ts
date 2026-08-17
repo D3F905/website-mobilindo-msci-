@@ -7,9 +7,15 @@ import type { Vehicle } from "@/types/vehicle";
  * they are separate units in the source material — do not deduplicate by
  * name. `plateNumber` and `image` are set for the 11 units identified and
  * photographed from the 2026-08-13 upload (see
- * public/images/fleet/README.md for match confidence per unit). The
- * remaining 5 (Alphard, Veloz Manual, Veloz, Avanza TSS, Avanza Luxury)
- * stay `image: null` — no verifiable photo exists for them yet.
+ * public/images/fleet/README.md for match confidence per unit).
+ *
+ * Veloz Manual, Veloz, Avanza TSS and Avanza Luxury have no photo of their
+ * own exact unit, but a same-model photo exists elsewhere in the catalog
+ * (Veloz Matic / Avanza Facelift / Avanza) — those are reused here as
+ * `imageType: "representative"` per the 2026-08-15 owner correction,
+ * rather than left as a placeholder. Alphard has its own real unit photo
+ * as of 2026-08-16 (`alphard.jpg`, plate D 1023 YVB) — the last of the 16
+ * listings to get one.
  */
 export const fleet: Vehicle[] = [
   // Page 1 (10 listings)
@@ -28,9 +34,10 @@ export const fleet: Vehicle[] = [
     name: "Alphard",
     priceLabel: "700K",
     transmission: "matic",
-    image: null,
+    image: "/images/fleet/alphard.jpg",
     catalogPage: 1,
     unitIndex: 2,
+    plateNumber: "D 1023 YVB",
   },
   {
     id: "veloz-matic",
@@ -47,7 +54,8 @@ export const fleet: Vehicle[] = [
     name: "Veloz Manual",
     priceLabel: "400K",
     transmission: "manual",
-    image: null,
+    image: "/images/fleet/veloz-matic.jpg",
+    imageType: "representative",
     catalogPage: 1,
     unitIndex: 4,
   },
@@ -56,7 +64,8 @@ export const fleet: Vehicle[] = [
     name: "Avanza TSS",
     priceLabel: "350K",
     transmission: "manual",
-    image: null,
+    image: "/images/fleet/avanza-facelift.jpg",
+    imageType: "representative",
     catalogPage: 1,
     unitIndex: 5,
   },
@@ -117,16 +126,18 @@ export const fleet: Vehicle[] = [
     name: "Avanza Luxury",
     priceLabel: "300K",
     transmission: "manual",
-    image: null,
+    image: "/images/fleet/avanza-01.jpg",
+    imageType: "representative",
     catalogPage: 2,
     unitIndex: 1,
   },
   {
     id: "veloz",
     name: "Veloz",
-    priceLabel: "300K",
+    priceLabel: "400K",
     transmission: "matic",
-    image: null,
+    image: "/images/fleet/veloz-matic.jpg",
+    imageType: "representative",
     catalogPage: 2,
     unitIndex: 2,
   },

@@ -11,18 +11,22 @@ interface PriceRow {
 }
 
 /**
- * Figures come from docs/competitor-pricing.md (real self-drive/"lepas
- * kunci" listings from Bandung rental competitors, checked 2026-08-13).
- * Competitor identities are intentionally not shown here — full sourcing
- * with company names/URLs lives in the internal doc; this is a comparison,
- * not competitor advertising. Alphard is deliberately excluded: MSCI's
- * unit's year/trim isn't confirmed yet, and every competitor listing found
- * varies price hugely by trim, so a comparison would be misleading.
+ * Figures reflect the 2026-08-15 owner correction: updated competitor
+ * prices for Pajero Sport, Veloz and Avanza, and the Veloz MSCI price
+ * fixed from 300K to 400K (matches veloz-matic/veloz-manual in
+ * lib/data/fleet.ts — "veloz" was the one stale outlier). See
+ * docs/competitor-pricing.md for the full note on this correction and its
+ * provenance (owner-provided figures, not re-run web research).
  *
- * Three competitor columns (not four) — that's the number of distinct,
- * confidently-comparable self-drive prices the research actually supports
- * for every row. A fourth column would mean padding at least one row with
- * a promotional or non-comparable price just to fill the grid.
+ * Competitor identities are intentionally not shown here — this is a
+ * price comparison, not competitor advertising. Alphard is deliberately
+ * excluded: MSCI's unit's year/trim isn't confirmed yet, and competitor
+ * listings vary hugely by trim, so a comparison would be misleading.
+ *
+ * Do not round or adjust these numbers to make MSCI look cheaper — Veloz
+ * MSCI (400K) ties the lowest competitor figure exactly, which is why the
+ * page copy says "salah satu harga paling kompetitif" (one of the most
+ * competitive), never "termurah" (cheapest) or "nomor 1".
  */
 const ROWS: PriceRow[] = [
   {
@@ -30,25 +34,25 @@ const ROWS: PriceRow[] = [
     category: "SUV Premium",
     image: "/images/fleet/pajero-sport.jpg",
     msciPrice: "850K",
-    competitorPrices: ["850K", "1.100K", "1.300K"],
+    competitorPrices: ["1.100K", "1.200K", "1.250K", "1.300K"],
   },
   {
     vehicle: "Veloz",
     category: "MPV Premium",
     image: "/images/fleet/veloz-matic.jpg",
-    msciPrice: "300K",
-    competitorPrices: ["400K", "450K", "550K"],
+    msciPrice: "400K",
+    competitorPrices: ["400K", "450K", "500K", "550K"],
   },
   {
     vehicle: "Avanza",
     category: "MPV Keluarga",
     image: "/images/fleet/avanza-facelift.jpg",
     msciPrice: "300K",
-    competitorPrices: ["325K", "350K", "400K"],
+    competitorPrices: ["325K", "350K", "375K", "400K"],
   },
 ];
 
-const COMPETITOR_LABELS = ["Kompetitor A", "Kompetitor B", "Kompetitor C"];
+const COMPETITOR_LABELS = ["Kompetitor A", "Kompetitor B", "Kompetitor C", "Kompetitor D"];
 
 const VALUE_STRIP = [
   { title: "Harga Transparan", description: "Tanpa biaya tersembunyi", Icon: TagIcon },
@@ -59,12 +63,27 @@ const VALUE_STRIP = [
 
 export default function PriceComparison() {
   return (
-    <section className="bg-ink-950 py-20 sm:py-28">
-      <Container>
+    <section className="relative overflow-hidden bg-ink-950 py-20 sm:py-28">
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[45%] opacity-[0.08] sm:block"
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/fleet/pajero-sport.jpg"
+          alt=""
+          fill
+          className="object-cover object-left [mask-image:linear-gradient(to_left,black,transparent)]"
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/40"
+        aria-hidden="true"
+      />
+      <Container className="relative">
         <Reveal>
           <div className="flex items-center gap-3">
             <span className="text-xs font-semibold text-accent-400/60" aria-hidden="true">
-              N.02
+              N.03
             </span>
             <span className="h-px w-8 bg-white/20" aria-hidden="true" />
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent-400">
@@ -82,7 +101,7 @@ export default function PriceComparison() {
 
         <Reveal className="mt-14">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[680px] border-collapse text-left">
+            <table className="w-full min-w-[820px] border-collapse text-left">
               <thead>
                 <tr>
                   <th

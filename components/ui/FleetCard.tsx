@@ -40,6 +40,10 @@ export default function FleetCard({ vehicle, featured = false }: FleetCardProps)
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+      <div
+        className="pointer-events-none absolute inset-0 -translate-x-[130%] skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[130%] motion-reduce:hidden"
+        aria-hidden="true"
+      />
 
       <div className="relative flex h-full flex-col justify-end p-6 sm:p-7">
         <div>
@@ -52,6 +56,9 @@ export default function FleetCard({ vehicle, featured = false }: FleetCardProps)
           </p>
           <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50">
             {vehicle.transmission}
+            {vehicle.imageType === "representative" && (
+              <span className="text-white/35"> · Foto representatif</span>
+            )}
           </p>
         </div>
 

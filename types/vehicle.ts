@@ -20,4 +20,12 @@ export interface Vehicle {
   unitIndex: number;
   /** Only ever set once a plate number is legible in the source photo. */
   plateNumber?: string;
+  /**
+   * Set when `image` is a same-model stand-in rather than a photo of this
+   * exact unit (e.g. reusing the Veloz Matic photo for a Veloz listing with
+   * no verified photo of its own). Drives a small "Foto representatif"
+   * disclosure in FleetCard — never used to imply a different vehicle
+   * model than the one actually shown.
+   */
+  imageType?: "representative";
 }

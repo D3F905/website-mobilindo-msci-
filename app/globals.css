@@ -53,3 +53,67 @@ body {
   outline: 2px solid var(--color-accent-500);
   outline-offset: 2px;
 }
+
+/* ---------------------------------------------------------------
+   Subtle automotive motion — ServiceOptions section only. Kept as
+   plain CSS keyframes (no dependency) with a single, unconditional
+   prefers-reduced-motion override below, so reduced-motion support
+   can't be missed by forgetting a Tailwind motion-reduce: variant on
+   one of the elements that uses these.
+   --------------------------------------------------------------- */
+@keyframes car-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4px, -10px) scale(1.015);
+  }
+}
+
+@keyframes light-streak {
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(220%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-car-float {
+  animation: car-float 7s ease-in-out infinite;
+}
+
+.animate-light-streak {
+  animation: light-streak 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-car-float,
+  .animate-light-streak,
+  .animate-glow-pulse {
+    animation: none;
+  }
+}
